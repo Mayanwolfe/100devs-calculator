@@ -55,8 +55,9 @@ const calculator = {
     },
 
     calcAnswer(equation) {
-        !(this.displayText == 0) && this.outputText( eval(equation))
-        this.prevTotal = eval(equation)
+        let result = Function("return " + equation)()
+        !(this.displayText == 0) && this.outputText( result)
+        this.prevTotal = result
     },
 
     clearAll() {

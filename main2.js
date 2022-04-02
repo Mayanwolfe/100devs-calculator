@@ -23,10 +23,13 @@ const calculator = {
             this.clearAll()
         } else if (isNaN(this.displayText.charAt(this.displayText.length - 1))  && isNaN(+(value))) {
             return;
-        } else if (this.displayText === '' && value === '.') {
-            this.addText('0' + value)
-        }
-        else {
+        } else if (value === '.' ) {
+            if (this.displayText === '') {
+                this.addText('0' + value)
+            } else {
+                this.addText(value)
+            }
+        } else {
             this.addText(value)
         }
     },

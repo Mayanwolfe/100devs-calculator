@@ -12,17 +12,19 @@ const keys = document.querySelector('.calculator-keys');
 
 const calculator = {
     displayText: '0',
-    operator: null,
 
     parseInput(value) {
-        if(this.displayText === '0') {
+        if (this.displayText === '0') {
             this.displayText = ''
-        } else if (value === '=') {
+        } 
+        if (value === '=') {
             this.calcAnswer(this.displayText)
         } else if (value === 'AC') {
             this.clearAll()
-        } else if (this.displayText.includes(value) && (value == '+')) {
+        } else if (isNaN(this.displayText.charAt(this.displayText.length - 1))  && isNaN(+(value))) {
             return;
+        } else if (this.displayText === '' && value === '.') {
+            this.addText('0' + value)
         }
         else {
             this.addText(value)
@@ -40,7 +42,6 @@ const calculator = {
 
     clearAll() {
         this.displayText = '0',
-        this.operator = null,
         this.outputText(this.displayText)
     },
 
